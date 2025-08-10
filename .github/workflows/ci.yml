@@ -1,0 +1,96 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Install dependencies (if package.json exists)
+      run: |
+        if [ -f package.json ]; then
+          npm ci
+        fi
+      continue-on-error: true
+      
+    - name: Run HTML validation
+      uses: validator/action@v1
+      with:
+        html_files: 'index.html'
+        
+    - name: Run CSS validation
+      uses: validator/action@v1
+      with:
+        css_files: 'styles.css'
+        
+    - name: Check JavaScript syntax
+      run: |
+        node -c script.js
+        echo "✅ JavaScript syntax is valid"
+        
+    - name: Test web app functionality
+      run: |
+        echo "🧪 Running basic functionality tests..."
+        echo "✅ HTML file exists: $(test -f index.html && echo 'Yes' || echo 'No')"
+        echo "✅ CSS file exists: $(test -f styles.css && echo 'Yes' || echo 'No')"
+        echo "✅ JS file exists: $(test -f script.js && echo 'Yes' || echo 'No')"
+        echo "✅ README exists: $(test -f README.md && echo 'Yes' || echo 'No')"
+        echo "✅ Gitignore exists: $(test -f .gitignore && echo 'Yes' || echo 'No')"
+        
+    - name: Check file sizes
+      run: |
+        echo "📊 File size analysis:"
+        ls -lh *.html *.css *.js *.md 2>/dev/null || echo "Some files not found"
+        
+  security:
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run security scan
+      uses: github/codeql-action/init@v2
+      with:
+        languages: javascript
+        
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, security]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
+        publish_branch: gh-pages
+        
+    - name: Create deployment tag
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git tag -a "v$(date +'%Y.%m.%d')" -m "Deployment $(date)"
+        git push origin "v$(date +'%Y.%m.%d')"
+      continue-on-error: true

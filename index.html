@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Demo App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 DevOps Project Demo</h1>
+            <p>Version Control & CI/CD Pipeline Demo</p>
+        </header>
+        
+        <main>
+            <section class="feature-section">
+                <h2>Project Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Git Workflow</h3>
+                        <p>Proper branching strategy with dev, feature, and main branches</p>
+                        <span class="status">✅ Implemented</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Pull Requests</h3>
+                        <p>Code review process through GitHub pull requests</p>
+                        <span class="status">✅ Implemented</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Documentation</h3>
+                        <p>Comprehensive README and markdown documentation</p>
+                        <span class="status">✅ Implemented</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>CI/CD Ready</h3>
+                        <p>GitHub Actions workflow for automated testing</p>
+                        <span class="status">🔄 In Progress</span>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="demo-section">
+                <h2>Interactive Demo</h2>
+                <div class="demo-controls">
+                    <button id="addTask" class="btn btn-primary">Add Task</button>
+                    <button id="clearTasks" class="btn btn-secondary">Clear All</button>
+                </div>
+                <div class="task-list" id="taskList">
+                    <div class="task-item">
+                        <span class="task-text">Initialize Git repository</span>
+                        <span class="task-status completed">✅</span>
+                    </div>
+                    <div class="task-item">
+                        <span class="task-text">Create branching strategy</span>
+                        <span class="task-status completed">✅</span>
+                    </div>
+                    <div class="task-item">
+                        <span class="task-text">Set up pull request workflow</span>
+                        <span class="task-status completed">✅</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Built with ❤️ for DevOps learning | Version: <span id="version">1.0.0</span></p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
