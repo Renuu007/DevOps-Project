@@ -45,7 +45,7 @@ DevOps-Project/
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Renuu007/DevOps-Project.git
    cd DevOps-Project
    ```
 
@@ -101,6 +101,100 @@ chore: maintenance tasks
 - Feature: `feature/feature-name`
 - Bug fix: `fix/bug-description`
 - Hotfix: `hotfix/critical-fix`
+
+## 🖥️ Essential Git Commands
+
+### Repository Setup
+```bash
+git init                    # Initialize a new Git repository
+git clone <url>            # Clone a repository from remote URL
+git remote add origin <url> # Add remote origin to local repository
+git remote -v              # View all remote repositories
+```
+
+### Basic Workflow
+```bash
+git status                 # Check the status of working directory
+git add <file>             # Stage specific file for commit
+git add .                  # Stage all changes for commit
+git commit -m "message"    # Commit staged changes with message
+git log                    # View commit history
+git log --oneline          # View compact commit history
+```
+
+### Branching Commands
+```bash
+git branch                 # List all local branches
+git branch -a              # List all branches (local and remote)
+git branch <name>          # Create a new branch
+git checkout <branch>      # Switch to specified branch
+git checkout -b <name>     # Create and switch to new branch
+git switch <branch>        # Modern way to switch branches
+git switch -c <name>       # Create and switch to new branch
+git merge <branch>         # Merge specified branch into current branch
+git branch -d <branch>     # Delete local branch (if merged)
+git branch -D <branch>     # Force delete local branch
+```
+
+### Remote Operations
+```bash
+git fetch                  # Download objects and refs from remote
+git pull                   # Fetch and merge changes from remote
+git push                   # Push local commits to remote
+git push origin <branch>   # Push specific branch to remote
+git push -u origin <branch> # Push and set upstream for branch
+git push --tags            # Push all tags to remote
+```
+
+### Stashing and Reset
+```bash
+git stash                  # Temporarily save uncommitted changes
+git stash list            # List all stashes
+git stash pop             # Apply and remove most recent stash
+git stash apply           # Apply stash without removing it
+git reset --hard HEAD     # Reset working directory to last commit
+git reset --soft HEAD~1   # Undo last commit, keep changes staged
+git reset HEAD <file>     # Unstage specific file
+```
+
+### Information and History
+```bash
+git show <commit>          # Show details of specific commit
+git diff                   # Show unstaged changes
+git diff --staged          # Show staged changes
+git diff <branch1>..<branch2> # Show differences between branches
+git blame <file>           # Show who changed what in a file
+git log --graph --oneline  # Show commit history with graph
+```
+
+### Tagging and Versioning
+```bash
+git tag                    # List all tags
+git tag <name>             # Create lightweight tag
+git tag -a <name> -m "message" # Create annotated tag
+git tag -d <name>          # Delete local tag
+git push origin --tags     # Push all tags to remote
+git checkout <tag>         # Checkout specific tag (detached HEAD)
+```
+
+### Advanced Commands
+```bash
+git rebase <branch>        # Replay commits on top of another branch
+git cherry-pick <commit>   # Apply specific commit to current branch
+git bisect start           # Start binary search for bug
+git bisect good <commit>   # Mark commit as good
+git bisect bad <commit>    # Mark commit as bad
+git submodule add <url>    # Add submodule to repository
+git worktree add <path>    # Add working tree
+```
+
+### Configuration
+```bash
+git config --global user.name "Your Name"     # Set global username
+git config --global user.email "email@example.com" # Set global email
+git config --list          # List all configuration
+git config user.name       # Get specific configuration value
+```
 
 ## 🏷️ Versioning
 
